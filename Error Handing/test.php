@@ -157,24 +157,42 @@
 
 
 // getFile() Hiển thị các tập tin và đường dẫn xảy ra lỗi
-$noi_dung = file_get_contents("duong_dan/toi/tap_tin.txt");
-echo $noi_dung;
+// $noi_dung = file_get_contents("duong_dan/toi/tap_tin.txt");
+// echo $noi_dung;
 
-// getLine() Hiển thị các dòng xảy ra lỗi
-try {
-    throw new Exception("Lỗi đã xảy ra");
-} catch (Exception $e) {
-    echo $e->getLine();
-}
-$handle = fopen("duong_dan/toi/tap_tin.txt", "r");
-if ($handle) {
-    while (($line = fgets($handle)) !== false) {
-        echo $line;
-    }
-    fclose($handle);
-}
+// // getLine() Hiển thị các dòng xảy ra lỗi
+// try {
+//     throw new Exception("Lỗi đã xảy ra");
+// } catch (Exception $e) {
+//     echo $e->getLine();
+// }
+// $handle = fopen("duong_dan/toi/tap_tin.txt", "r");
+// if ($handle) {
+//     while (($line = fgets($handle)) !== false) {
+//         echo $line;
+//     }
+//     fclose($handle);
+// }
 
 // getTrace() Hiển thị trả về thông tin truy vết lỗi là 1 mảng các tên file và số dòng 
 // getPrevious() HIển thị lỗi trước khi xảy ra trường hợp hiện tại
+class MyCustomException extends Exception {}
+
+function doStuff() {
+    try {
+        throw new InvalidArgumentException("Bạn đang làm sai!", 112);
+    } catch (Exception $e) {
+        throw new MyCustomException("Có điều gì đó đã xảy ra", 911, $e);
+    }
+}
+
+try {
+    doStuff();
+} catch (Exception $e) {
+    do {
+        printf("%s:%d %s (%d) [%s]\n", $e->getFile(), $e->getLine(), $e->getMessage(), $e->getCode(), get_class($e));
+    } while ($e = $e->getPrevious());
+}
+
 // getTraceAsString() Hiển thị 1 loại dấu vết của lỗi như 1 chuỗi thay vì 1 mảng
 // __toString() HIển thị toàn bộ lỗi như 1 chuỗi
