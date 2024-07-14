@@ -75,16 +75,22 @@
 // }
 
 
-function cmp($a, $b) {
-    if ($a == $b) {
-        return 0;
-    }
-    return ($a > $b) ? 1 : -1;
-}
+// function cmp($a, $b) {
+//     if ($a == $b) {
+//         return 0;
+//     }
+//     return ($a > $b) ? 1 : -1;
+// }
 
-$a = array(4, 2, 5, 3, 1);
-usort($a, "cmp");
+// $a = array(4, 2, 5, 3, 1);
+// usort($a, "cmp");
 
-foreach ($a as $key => $value) {
-    echo "$key: $value<br>";
-}
+// foreach ($a as $key => $value) {
+//     echo "$key: $value<br>";
+// }
+
+
+$input_array = array("FirSt" => 1, "SecOnd" => 4); // = 1 chữ hoa và = 0 chữ thường
+print_r(array_change_key_case($input_array, CASE_UPPER)); // case_upper chuyển chuỗi thành chữ hoa
+// Kết quả: Array ( [FIRST] => 1 [SECOND] => 4 )
+
