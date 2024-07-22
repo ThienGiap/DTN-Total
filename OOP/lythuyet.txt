@@ -1,0 +1,2 @@
+Hàm __construct() PHP sẽ tự động gọi hàm này khi tạo 1 đối tượng từ 1 class
+Hàm __destruct() 1 trình hủy khi đối tượng bị hủy hoặc code bị dừng hoặc thoát và PHP sẽ tự động gọi hàm này ở cuối tập lệnh
