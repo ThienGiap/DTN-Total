@@ -3,27 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 
 class SanPhamController extends Controller
 {
-    public $san_pham;
-
-    public function __construct()
-    {
-        $this->san_pham = new SanPham();
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        $listSanPham = $this->san_pham->getAll();
-        // dd($listSanPham);
-        // Gọi đến view
-        return view('admin.sanpham.index', ['san_phams' => $listSanPham]);
+        $listSanPham = SanPham::orderByDesc('trang_thai')->get();
+        return view('admin.sanpham.index', compact('listSanPham'));
     }
 
     /**
@@ -31,7 +23,8 @@ class SanPhamController extends Controller
      */
     public function create()
     {
-        //
+        $listDanhMuc = DanhMuc::query()->get();
+        return view('admin.sanpham.create', compact('listDanhMuc'));
     }
 
     /**

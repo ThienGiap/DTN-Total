@@ -23,6 +23,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{ asset('import/assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    @yield('css')
 
 </head>
 
@@ -35,7 +36,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{'/'}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.index')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fa-solid fa-house"></i>
                 </div>
@@ -69,7 +70,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Danh sách quản trị viên</a>
+                        <a class="collapse-item" href="{{ route('admin.taikhoan.index') }}">Danh sách quản trị viên</a>
                         <a class="collapse-item" href="">Danh sách người dùng</a>
                         <a class="collapse-item" href="">Tài khoản bị khóa</a>
                         <a class="collapse-item" href="" style="background-color: #48dbfb;">
@@ -88,7 +89,7 @@
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('danhmuc.index') }}">Danh sách danh mục</a>
+                        <a class="collapse-item" href="{{ route('admin.danhmuc.index') }}">Danh sách danh mục</a>
                         <a class="collapse-item" href="" style="background-color: #48dbfb;">
                             <i class="fas fa-fw fa-plus" style="color: #576574;"></i>
                             <span>Thêm mới</span></a>
@@ -105,7 +106,7 @@
                 </a>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('sanpham.index') }}">Danh sách sản phẩm</a>
+                        <a class="collapse-item" href="{{ route('admin.sanpham.index') }}">Danh sách sản phẩm</a>
                         <a class="collapse-item" href="" style="background-color: #48dbfb;">
                             <i class="fas fa-fw fa-plus" style="color: #576574;"></i>
                             <span>Thêm mới</span></a>
@@ -189,7 +190,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->ho_va_ten}}</span>
                                 <i class="fas fa-fw fa-user"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -253,7 +254,7 @@
                 <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn muốn thoát khỏi trang admin.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../controller/index.php">Đăng xuất</a>
+                    <a class="btn btn-primary" href="{{ ('/') }}">Đăng xuất</a>
                 </div>
             </div>
         </div>
@@ -275,6 +276,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('import/assets/js/demo/datatables-demo.js') }}"></script>
     <script src="{{ asset('import/assets/js/cuong.js') }}"></script>
+    @yield('js')
 </body>
 
 </html>

@@ -3,13 +3,13 @@
     <!-- Begin Page Content -->
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800 mb-5">Danh sách danh mục</h1>
-    <form action="?act=listdm" method="post">
+    <form action="" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <button type="button" class="btn btn-secondary btn-sm" onclick="">Chọn tất cả</button>
                 <button type="button" class="btn btn-secondary btn-sm" onclick="">Bỏ chọn tất cả</button>
                 <button type="submit" name="xoacacmucchon" class="btn btn-secondary btn-sm">Xóa các mục đã chọn</button>
-                <a href=""><button type="button" class="btn btn-secondary btn-sm">Nhập thêm</button></a>
+                <a href="{{ route('admin.danhmuc.create') }}"><button type="button" class="btn btn-secondary btn-sm">Nhập thêm</button></a>
                 <div class="float-right">
                     <div class="input-group">
                         <input type="text" class="form-control" name="kyw" placeholder="Tìm kiếm...">
@@ -23,28 +23,44 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fabe show" role="alert">
+                            {{session('success')}}
+                            <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>                        
+                    @endif
                     <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead class="thead-light">
                             <tr>
                                 <th></th>
                                 <th>Mã loại</th>
+                                <th>Icon</th>
                                 <th>Tên danh mục</th>
+                                <th>Trạng thái</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($danh_mucs as $index => $item)
+                            @foreach ($listDanhMuc as $index => $item)
                                 <tr>
                                     <td class="col-1 text-center"><input type="checkbox" name="select[]" value=""></td>
                                     <td class="col-2">{{ $index + 1 }}</td>
+                                    <td>
+                                        <img src="{{Storage::url($item->hinh_anh)}}" alt="err" style="width:100xp; height:100px">
+                                    </td>
                                     <td>{{ $item->ten_danh_muc }}</td>
+                                    <td class="{{ $item->trang_thai == true ? 'text-success' : 'text-danger' }}">
+                                        {{ $item->trang_thai == true ? 'Hiển thị' : 'Ẩn' }}
+                                    </td>
                                     <td class="col-2">
-                                        <a href="">
+                                        <a href="{{ route('admin.danhmuc.edit', $item->id) }}">
                                             <button type="button" class="btn btn-secondary btn-sm">Sửa</button>
                                         </a> | 
-                                        <a onclick="" href="">
-                                            <button type="button" class="btn btn-secondary btn-sm">Xóa</button>
-                                        </a>
+                                        <form action="{{ route('admin.danhmuc.destroy', $item->id) }}" method="post" class="d-inline" onsubmit="return confirm('Muốn xóa ko')">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-secondary btn-sm">Xóa</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
