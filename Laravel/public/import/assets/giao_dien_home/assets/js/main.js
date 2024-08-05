@@ -53,16 +53,34 @@
         });
     }
     
-    // Hero slider active
-    var sliderActive = new Swiper('.slider-active', {
-        loop: true,
-        speed: 750,
-        effect: 'fade',
-        slidesPerView: 1,
-        navigation: {
-            nextEl: '.home-slider-next , .home-slider-next2 , .home-slider-next3',
-            prevEl: '.home-slider-prev , .home-slider-prev2 , .home-slider-prev3',
-        }
+    // Hero slider active old
+    // var sliderActive = new Swiper('.slider-active', {
+    //     loop: true,
+    //     speed: 750,
+    //     effect: 'fade',
+    //     slidesPerView: 1,
+    //     navigation: {
+    //         nextEl: '.home-slider-next , .home-slider-next2 , .home-slider-next3',
+    //         prevEl: '.home-slider-prev , .home-slider-prev2 , .home-slider-prev3',
+    //     }
+    // });
+    
+    //Slider new
+    document.addEventListener('DOMContentLoaded', function () {
+        var sliderActive = new Swiper('.slider-active', {
+            loop: true,
+            speed: 750,
+            effect: 'fade',
+            slidesPerView: 1,
+            autoplay: {
+                delay: 3000, // 3 giây
+                disableOnInteraction: false, // Không dừng autoplay khi tương tác
+            },
+            navigation: {
+                nextEl: '.home-slider-next',
+                prevEl: '.home-slider-prev',
+            }
+        });
     });
     
     /*------ Timer active ----*/
@@ -221,60 +239,60 @@
     /*----------------------------
     	Cart Plus Minus Button
     ------------------------------ */
-    $(".qtybutton").on("click", function() {
-        var $button = $(this);
-        var oldValue = $button.parent().find("input[name='qtybutton']").val();
-        var oldgiakm = $button.parent().find("input[name='giakm']").val();
-        var oldthanhtien = $button.parent().find("input[name='thanhtien']");
-        var thanhtienText=$button.parent().parent().parent().find(".product-total span");
-        if ($button.text() === "+") {
-            var newVal = parseFloat(oldValue) + 1;
-            //code vao day
-            //end code
-        } else {
-            if (oldValue > 1) {
-                var newVal = parseFloat(oldValue) - 1;
-                //code vao day
-                //end code
-            } else {
-                newVal = 1;
-            }
-        }
-        oldthanhtien.val(parseInt(oldgiakm)*parseFloat(newVal));
-        thanhtienText.text((parseInt(oldgiakm)*parseFloat(newVal)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
-        $button.parent().find("input[name='qtybutton']").val(newVal);
-        tongthanhtoan();
-        var idsp = $button.parent().find("input[name='idsp']").val();
-        var soluong=$button.parent().find("input[name='qtybutton']").val();
-        var thanhtien=$button.parent().find("input[name='thanhtien']").val();
-        $.ajax({
-            type: "POST",
-            url: "index.php?act=giohang",
-            data: {
-                id: idsp,
-                soluong: soluong,
-                thanhtien: thanhtien
-            },
-            success: function(response) {
+    // $(".qtybutton").on("click", function() {
+    //     var $button = $(this);
+    //     var oldValue = $button.parent().find("input[name='qtybutton']").val();
+    //     var oldgiakm = $button.parent().find("input[name='giakm']").val();
+    //     var oldthanhtien = $button.parent().find("input[name='thanhtien']");
+    //     var thanhtienText=$button.parent().parent().parent().find(".product-total span");
+    //     if ($button.text() === "+") {
+    //         var newVal = parseFloat(oldValue) + 1;
+    //         //code vao day
+    //         //end code
+    //     } else {
+    //         if (oldValue > 1) {
+    //             var newVal = parseFloat(oldValue) - 1;
+    //             //code vao day
+    //             //end code
+    //         } else {
+    //             newVal = 1;
+    //         }
+    //     }
+    //     oldthanhtien.val(parseInt(oldgiakm)*parseFloat(newVal));
+    //     thanhtienText.text((parseInt(oldgiakm)*parseFloat(newVal)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+    //     $button.parent().find("input[name='qtybutton']").val(newVal);
+    //     tongthanhtoan();
+    //     var idsp = $button.parent().find("input[name='idsp']").val();
+    //     var soluong=$button.parent().find("input[name='qtybutton']").val();
+    //     var thanhtien=$button.parent().find("input[name='thanhtien']").val();
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "index.php?act=giohang",
+    //         data: {
+    //             id: idsp,
+    //             soluong: soluong,
+    //             thanhtien: thanhtien
+    //         },
+    //         success: function(response) {
                 
-              },
-              error: function(error) {
-                console.error('Lỗi: ', error);
-                alert('Có lỗi xảy ra');
-              }
-        });
+    //           },
+    //           error: function(error) {
+    //             console.error('Lỗi: ', error);
+    //             alert('Có lỗi xảy ra');
+    //           }
+    //     });
         
-    });
-    function tongthanhtoan(){
-        var tong=0;
-        var arrTr=document.querySelectorAll(".trgiohang");
-        arrTr.forEach(function(element){
-            var thanhtien=element.querySelector("input[name='thanhtien']").value;
-            tong+=parseInt(thanhtien);
-        })
-        var tongthanhtoantext=document.querySelector("#tongthanhtoan");
-        tongthanhtoantext.innerHTML=tong.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-    }
+    // });
+    // function tongthanhtoan(){
+    //     var tong=0;
+    //     var arrTr=document.querySelectorAll(".trgiohang");
+    //     arrTr.forEach(function(element){
+    //         var thanhtien=element.querySelector("input[name='thanhtien']").value;
+    //         tong+=parseInt(thanhtien);
+    //     })
+    //     var tongthanhtoantext=document.querySelector("#tongthanhtoan");
+    //     tongthanhtoantext.innerHTML=tong.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    // }
     /*------ ScrollUp -------- */
     $.scrollUp({
         scrollText: '<i class=" ti-arrow-up "></i>',
@@ -290,7 +308,7 @@
     var $window = $(window);
     $window.on('scroll', function() {
         var scroll = $window.scrollTop();
-        if (scroll < 200) {
+        if (scroll < 100) {
             header.removeClass('stick');
         } else {
             header.addClass('stick');

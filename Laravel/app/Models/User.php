@@ -12,17 +12,17 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    function getAll($vai_tro)
-    {
-        $tai_khoan = DB::table('users')
-        ->select('*');
-        if ($vai_tro == 1 || $vai_tro == 0) {
-            $tai_khoan
-            ->where('vai_tro', $vai_tro)
-            ->where('trang_thai', 0);
-        }
-        return $tai_khoan->orderBy('id', 'asc')->get();
-    }
+    // function getAll($vai_tro)
+    // {
+    //     $tai_khoan = DB::table('users')
+    //     ->select('*');
+    //     if ($vai_tro == 1 || $vai_tro == 0) {
+    //         $tai_khoan
+    //         ->where('vai_tro', $vai_tro)
+    //         ->where('trang_thai', 0);
+    //     }
+    //     return $tai_khoan->orderBy('id', 'asc')->get();
+    // }
     /**
      * The attributes that are mass assignable.
      *
@@ -33,7 +33,10 @@ class User extends Authenticatable
         'ten_dang_nhap',
         'email',
         'password',
-        'vai_tro'
+        'vai_tro',
+        'so_dien_thoai',
+        'dia_chi',
+        'trang_thai'
     ];
 
     /**
@@ -55,4 +58,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function donHang(){
+        return $this->hasMany(DonHang::class);
+    }
 }

@@ -36,7 +36,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.index')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.admin')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fa-solid fa-house"></i>
                 </div>
@@ -71,9 +71,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.taikhoan.index') }}">Danh sách quản trị viên</a>
-                        <a class="collapse-item" href="">Danh sách người dùng</a>
-                        <a class="collapse-item" href="">Tài khoản bị khóa</a>
-                        <a class="collapse-item" href="" style="background-color: #48dbfb;">
+                        <a class="collapse-item" href="{{ route('admin.thanhVien') }}">Danh sách người dùng</a>
+                        <a class="collapse-item" href="{{route('admin.taikhoan.listkhoaTK')}}">Tài khoản bị khóa</a>
+                        <a class="collapse-item" href="{{route('admin.taikhoan.create')}}" style="background-color: #48dbfb;">
                             <i class="fas fa-fw fa-plus" style="color: #576574;"></i>
                             <span>Thêm mới</span></a>
                     </div>
@@ -90,7 +90,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.danhmuc.index') }}">Danh sách danh mục</a>
-                        <a class="collapse-item" href="" style="background-color: #48dbfb;">
+                        <a class="collapse-item" href="{{route('admin.danhmuc.create')}}" style="background-color: #48dbfb;">
                             <i class="fas fa-fw fa-plus" style="color: #576574;"></i>
                             <span>Thêm mới</span></a>
                     </div>
@@ -107,7 +107,7 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.sanpham.index') }}">Danh sách sản phẩm</a>
-                        <a class="collapse-item" href="" style="background-color: #48dbfb;">
+                        <a class="collapse-item" href="{{route('admin.sanpham.create')}}" style="background-color: #48dbfb;">
                             <i class="fas fa-fw fa-plus" style="color: #576574;"></i>
                             <span>Thêm mới</span></a>
                     </div>
@@ -123,36 +123,19 @@
                 </a>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Danh sách đơn hàng</a>
-                        <a class="collapse-item" href="">Kiểm duyệt đơn hàng <sup></sup></a>
-                        <a class="collapse-item" href="">Danh sách đã giao</a>
-                        <a class="collapse-item" href="">Danh sách đã hủy</a>
+                        <a class="collapse-item" href="{{ route('admin.donhang.index') }}">Danh sách đơn hàng</a>
                     </div>
                 </div>
             </li>
             
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{route('admin.binhluan.index')}}">
                     <i class="fas fa-fw fa-comment"></i>
                     <span>Quản lý bình luận</span>
                 </a>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
-                    aria-expanded="true" aria-controls="collapseSix">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Thống kê</span>
-                </a>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Biểu đồ</a>
-                        <a class="collapse-item" href="">Danh sách</a>
-                    </div>
-                </div>
-            </li>
             <li class="nav-item  mb-3">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSevent"
                     aria-expanded="true" aria-controls="collapseSevent">
@@ -161,12 +144,14 @@
                 </a>
                 <div id="collapseSevent" class="collapse" aria-labelledby="headingSevent" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Quản lý banner</a>
+                        <a class="collapse-item" href="{{route('admin.tintuc.index')}}">Quản lý tin tức</a>
+                        <a class="collapse-item" href="{{route('admin.banner.index')}}">Quản lý banner</a>
+                        <a class="collapse-item" href="{{route('admin.lienhe.index')}}">Quản lý liên hệ</a>
                     </div>
                 </div>
             </li>
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block">s
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -223,7 +208,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; X-Shop 2024    </span>
                     </div>
                 </div>
             </footer>
@@ -260,6 +245,7 @@
         </div>
     </div>
     <!-- Bootstrap core JavaScript-->
+    @yield('js')
     <script src="{{ asset('import/assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('import/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -276,7 +262,6 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('import/assets/js/demo/datatables-demo.js') }}"></script>
     <script src="{{ asset('import/assets/js/cuong.js') }}"></script>
-    @yield('js')
 </body>
 
 </html>
